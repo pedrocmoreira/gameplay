@@ -11,12 +11,13 @@ export const styles = StyleSheet.create({
         backgroundColor: theme.colors.overlay,
     },
     bar: {
-        width: 39, 
+        width: '75%', 
         height: 2,
         borderRadius: 2,
         backgroundColor: theme.colors.secondary30,
         alignSelf: 'center',
         marginTop: 13,
+        marginBottom: 113,
     },
 
 });
