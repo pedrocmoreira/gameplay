@@ -1,4 +1,6 @@
 import React from "react";
+import { TouchableOpacity } from 'react-native';
+
 import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
 import {
     Text,
@@ -9,19 +11,20 @@ import {
 import DiscordImg from '../../assets/discord.png';
 import { styles } from './styles';
 
-type Props = RectButtonProps & {
+type Props = {
     title: string;
+    onPress: () => void;
 }
 
-export function ButtonIcon({ title, ...rest } : Props ){
+export function ButtonIcon({ title, onPress, ...rest } : Props ){
     return (
-        <RectButton style={styles.container} {...rest}>
+        <TouchableOpacity style={styles.container} onPress={onPress}>
             <View style={styles.iconWrapper}>
                 <Image source={DiscordImg} style={styles.icon}/>
             </View>
             <Text  style={styles.title} >
                 {title}
             </Text>
-        </RectButton>
+        </TouchableOpacity>
     );
 }

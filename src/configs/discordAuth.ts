@@ -1,4 +1,4 @@
-const REDIRECT_URI = 'https://auth.expo.io/@anonymous/gameplay-42b9c5ee-b60e-47c0-8d51-9087f12c9918';
+const REDIRECT_URI = 'https%3A%2F%2Fauth.expo.io%2F%40pedromoreira%2Fgameplay';
 const SCOPE = 'guilds%20connections%20identify%20email';
 const RESPONSE_TYPE = 'token';
 const CLIENT_ID = '880791916889915432';
