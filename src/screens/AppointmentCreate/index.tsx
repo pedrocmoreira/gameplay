@@ -1,7 +1,6 @@
 import React, { useState } from "react";
+import { View, Text, ScrollView, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native';
 import { Feather } from "@expo/vector-icons";
-import { RectButton } from 'react-native-gesture-handler';
-import { View, Text, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import { styles } from "./styles";
 import { ModalView } from "../../components/ModalView";
 import { Header } from "../../components/Header";
@@ -56,7 +55,7 @@ export function AppointmentCreate() {
                         categorySelected={category}
                     />
                     <View style={styles.form}>
-                        <RectButton onPress={handleOpenGuilds}>
+                        <TouchableOpacity onPress={handleOpenGuilds} activeOpacity={.7}>
                             <View style={styles.select}>
                                 {
                                     guild.icon
@@ -74,7 +73,7 @@ export function AppointmentCreate() {
                                     size={18}
                                 />
                             </View>
-                        </RectButton >
+                        </TouchableOpacity >
                         <View style={styles.field}>
                             <View>
                                 <Text style={[styles.label, { marginBottom: 12 }]}>

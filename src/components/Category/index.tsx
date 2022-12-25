@@ -1,13 +1,13 @@
 import React from "react";
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity, TouchableOpacityProps} from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
 import { SvgProps } from 'react-native-svg';
-import { RectButton, RectButtonProps } from "react-native-gesture-handler";
+import {  } from 'react-native';
 
 import { styles } from './styles'
 import { theme } from "../../global/styles/theme";
 
-type Props = RectButtonProps & {
+type Props = TouchableOpacityProps & {
     title: string;
     icon: React.FC<SvgProps>
     hasCheckBox?: boolean;
@@ -24,7 +24,7 @@ export function Category({
     const { secondary50, secondary70, secondary85, secondary40 } = theme.colors;
 
     return (
-        <RectButton {...rest}>
+        <TouchableOpacity {...rest} activeOpacity={.7}>
             <LinearGradient
                 style={styles.container}
                 colors={[secondary40, secondary50, secondary70, secondary85,]}
@@ -51,6 +51,6 @@ export function Category({
                 </LinearGradient>
             </LinearGradient>
 
-        </RectButton>
+        </TouchableOpacity>
     );
 }

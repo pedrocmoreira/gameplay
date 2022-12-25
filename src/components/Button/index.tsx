@@ -1,19 +1,19 @@
 import React from "react";
-import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
+import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { Text } from 'react-native';
 import { styles } from './styles';
 
-type Props = RectButtonProps & {
+type Props = TouchableOpacityProps & {
     title: string;
 }
 
 export function Button({ title, ...rest } : Props ){
     return (
-        <RectButton style={styles.container} {...rest}>
+        <TouchableOpacity style={styles.container} {...rest} activeOpacity={.7}>
  
             <Text  style={styles.title} >
                 {title}
             </Text>
-        </RectButton>
+        </TouchableOpacity>
     );
 }
