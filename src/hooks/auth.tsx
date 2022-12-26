@@ -2,9 +2,10 @@ import React, {
     createContext,
     useContext,
     useState,
-    ReactNode
+    ReactNode,
+    useEffect
 } from 'react';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as AuthSession from 'expo-auth-session';
 
 const { SCOPE } = process.env;
@@ -14,6 +15,7 @@ const { REDIRECT_URI } = process.env;
 const { RESPONSE_TYPE } = process.env;
 
 import { api } from '../services/api';
+import {COLLECTION_APPOINTMENTS, COLLECTION_USER} from '../configs/database';
 
 type User = {
     id: string;
@@ -52,7 +54,7 @@ function AuthProvider({ children } : AuthProviderProps ) {
             setLoading(true);
             
             const authUrl = `${api.defaults.baseURL}/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`;
-            console.log(authUrl);
+            // console.log(authUrl);
 
             const { type, params }  = await  AuthSession.startAsync({ authUrl }) as AuthorizationResponse;
 
@@ -62,12 +64,15 @@ function AuthProvider({ children } : AuthProviderProps ) {
                 const userInfo = await api.get('/users/@me');
                 const firstName = userInfo.data.username.split(' ')[0];
                 userInfo.data.avatar = `${CDN_IMAGE}/avatars/${userInfo.data.id}/${userInfo.data.avatar}.png`;
-                
-                setUser({
+
+                const userData = { 
                     ...userInfo.data,
                     firstName,
                     token: params.access_token
-                });
+                }
+                
+                await AsyncStorage.setItem(COLLECTION_USER, JSON.stringify(userData))
+                setUser(userData);
                 }
             }
         catch {
@@ -76,6 +81,21 @@ function AuthProvider({ children } : AuthProviderProps ) {
             setLoading(false)
         }
     }
+
+    async function loadStorageData() {
+        const storage = await AsyncStorage.getItem(COLLECTION_USER);
+
+        if(storage){
+            const userLogged = JSON.parse(storage) as User;
+            api.defaults.headers.authorization = `Bearer ${userLogged.token}`;
+
+            setUser(userLogged);
+        }
+    }
+
+    useEffect(() => {
+        loadStorageData();
+    }, [])
     
 
     return(
