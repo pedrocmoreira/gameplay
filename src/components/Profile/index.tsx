@@ -9,7 +9,7 @@ export function Profile() {
     const { user, signOut } = useAuth();
 
     function handleSignOut() {
-        Alert.alert('Logout', 'Deseja saio do Gameplay?',
+        Alert.alert('Logout', 'Deseja sair do Gameplay?',
             [
                 {
                     text: 'Não',
