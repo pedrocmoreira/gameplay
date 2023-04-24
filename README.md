@@ -49,7 +49,7 @@ Para usar o Gameplay, siga estas etapas:
 - Ter as credenciais de desenvolvdor do Discord
 - Configurar as credenciais de desenvolvedor do discord no arquivo .env.example
 
-## 📫 Contribuindo para <nome_do_projeto>
+## 📫 Contribuindo para Gameplay
 Para contribuir com Gameplay, siga estas etapas:
 
 1. Bifurque este repositório.
